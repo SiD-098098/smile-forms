@@ -27,7 +27,7 @@ class FoundingMemberSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = FoundingMember
-        fields = ["contact", "role", "current_level_of_study", "discipline"]
+        fields = ["contact", "role", "current_level_of_study", "discipline", "resume"]
 
 
 class UniversityChapterSerializer(serializers.ModelSerializer):
