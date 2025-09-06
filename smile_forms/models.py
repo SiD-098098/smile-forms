@@ -52,16 +52,41 @@ class FoundingMember(models.Model):
     role = models.CharField(max_length=100, choices=ROLE_CHOICES)
     current_level_of_study = models.CharField(max_length=100, choices=LEVEL_CHOICES)
     discipline = models.CharField(max_length=100)
-    resume = models.FileField(upload_to="resumes/", blank=True, null=True)
-    proof_of_association = models.FileField(upload_to="proofs/", blank=True, null=True)
+    resume = models.FileField(upload_to="resumes/")
+    proof_of_association = models.FileField(upload_to="proofs/")
 
     def __str__(self):
         return f"{self.contact.name} - {self.get_role_display()}"
 
 
+class CustomFoundingMember(models.Model):
+    LEVEL_CHOICES = [
+        ("ug_1", "Undergraduate - First Year"),
+        ("ug_2", "Undergraduate - Second Year"),
+        ("ug_3", "Undergraduate - Third Year"),
+        ("ug_4", "Undergraduate - Fourth Year"),
+        ("pg_masters", "Postgraduate - Masters"),
+        ("pg_doctoral", "Postgraduate - Doctoral"),
+        ("other", "Other"),
+    ]
+
+    contact = models.OneToOneField(Contact, on_delete=models.CASCADE, related_name="custom_founding_member", blank=True, null=True)
+    role = models.CharField(max_length=100, blank=True, null=True)
+    current_level_of_study = models.CharField(max_length=100, choices=LEVEL_CHOICES, blank=True, null=True)
+    discipline = models.CharField(max_length=100, blank=True, null=True)
+    resume = models.FileField(upload_to="resumes/", blank=True, null=True)
+    proof_of_association = models.FileField(upload_to="proofs/", blank=True, null=True)
+
+    def __str__(self):
+        contact_name = self.contact.name if self.contact else "No Contact"
+        role_name = self.role or "No Role"
+        return f"{contact_name} - {role_name}"
+
+
 class UniversityChapter(models.Model):
     university = models.OneToOneField(University, on_delete=models.CASCADE)
     founding_members = models.ManyToManyField(FoundingMember, related_name="university_chapters")
+    custom_founding_members = models.ManyToManyField("CustomFoundingMember", related_name="university_chapters", null=True, blank=True)
     point_of_contact = models.OneToOneField(PointOfContact, on_delete=models.CASCADE)
 
     def __str__(self):
