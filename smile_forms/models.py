@@ -86,7 +86,7 @@ class CustomFoundingMember(models.Model):
 class UniversityChapter(models.Model):
     university = models.OneToOneField(University, on_delete=models.CASCADE)
     founding_members = models.ManyToManyField(FoundingMember, related_name="university_chapters")
-    custom_founding_members = models.ManyToManyField("CustomFoundingMember", related_name="university_chapters", null=True, blank=True)
+    custom_founding_members = models.ManyToManyField("CustomFoundingMember", related_name="university_chapters", blank=True)
     point_of_contact = models.OneToOneField(PointOfContact, on_delete=models.CASCADE)
 
     def __str__(self):

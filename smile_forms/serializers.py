@@ -1,3 +1,45 @@
+from rest_framework import serializers
+from .models import (
+    University, Contact, PointOfContact,
+    FoundingMember, UniversityChapter, CustomFoundingMember
+)
+
+class ContactSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Contact
+        fields = "__all__"
+
+
+class UniversitySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = University
+        fields = "__all__"
+
+class PointOfContactSerializer(serializers.ModelSerializer):
+    contact = ContactSerializer()
+
+    class Meta:
+        model = PointOfContact
+        fields = ["contact"]
+
+
+class FoundingMemberSerializer(serializers.ModelSerializer):
+    contact = ContactSerializer()
+
+    class Meta:
+        model = FoundingMember
+        fields = ["contact", "role", "current_level_of_study", "discipline", "resume", "proof_of_association"]
+
+class CustomFoundingMemberSerializer(serializers.ModelSerializer):
+    contact = ContactSerializer(required=False, allow_null=True)  # optional
+
+    class Meta:
+        model = CustomFoundingMember
+        fields = [
+            "contact", "role", "current_level_of_study",
+            "discipline", "resume", "proof_of_association"
+        ]
+
 class UniversityChapterSerializer(serializers.ModelSerializer):
     university = UniversitySerializer()
     point_of_contact = PointOfContactSerializer()

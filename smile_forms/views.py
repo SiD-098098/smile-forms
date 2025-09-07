@@ -15,6 +15,20 @@ def create_university_chapter_nested(request):
         data = request.data
         files = request.FILES
 
+    # Merge files into the data structure
+    founding_members = data.get("founding_members", [])
+    for idx, member in enumerate(founding_members):
+        # Use the same field naming convention from Postman (founding_members[0][resume])
+        resume_key = f"founding_members[{idx}][resume]"
+        proof_key = f"founding_members[{idx}][proof_of_association]"
+
+        if resume_key in files:
+            member["resume"] = files[resume_key]
+        if proof_key in files:
+            member["proof_of_association"] = files[proof_key]
+
+    data["founding_members"] = founding_members
+
     serializer = UniversityChapterSerializer(data=data)
 
     if serializer.is_valid():

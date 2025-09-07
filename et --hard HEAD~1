@@ -1,0 +1,83 @@
+[33mcommit 1aa08c5e3a8f4c61108d5b7bff9968ff84be9f60[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: 7e44968 e9b7bfb
+Author: SiD-098098 <f20241075@pilani.bits-pilani.ac.in>
+Date:   Sun Sep 7 19:41:05 2025 +0530
+
+    Merge pull request #2 from parthsrivastava801/main
+    
+    added checks on forms and added custom founding members field on email
+
+[33mcommit e9b7bfb57311f5f2e86aafb3b9369a9f207da3aa[m
+Author: parthsrivastava801 <parthsrivastava801@gmail.com>
+Date:   Sun Sep 7 19:15:47 2025 +0530
+
+    added some important checks on forms
+
+[33mcommit 2b94d4cc0b8c6e17273421916714b17fc06a7b26[m
+Author: parthsrivastava801 <parthsrivastava801@gmail.com>
+Date:   Sun Sep 7 19:06:42 2025 +0530
+
+    fixed the email message to include customj founding members
+
+[33mcommit 7e44968169569f6c8bb3844d4ae01a36415c5c63[m
+Merge: 54d1e02 9b6939f
+Author: SiD-098098 <f20241075@pilani.bits-pilani.ac.in>
+Date:   Sat Sep 6 22:31:38 2025 +0530
+
+    Merge pull request #1 from parthsrivastava801/main
+    
+    added option to add two custom users
+
+[33mcommit 9b6939f1dd8d85fb186ab1cb24375cf14b8c1e1c[m
+Author: parthsrivastava801 <parthsrivastava801@gmail.com>
+Date:   Sat Sep 6 22:29:19 2025 +0530
+
+    added option to add two custom users
+
+[33mcommit 54d1e02aebe9e4cc407d1a2a935ab078c87be96c[m
+Author: SiD <f20241075@pilani.bits-pilani.ac.in>
+Date:   Sat Sep 6 19:38:16 2025 +0530
+
+    Added email logic
+
+[33mcommit 5f812f0b8b3947d250eeb4a1190268c021dcae9c[m
+Author: SiD <f20241075@pilani.bits-pilani.ac.in>
+Date:   Sun Aug 31 21:23:00 2025 +0530
+
+    static files debugging
+
+[33mcommit 5ec222173bc7e979ff8fd5ecc2ad4c6c0f7e74fb[m
+Author: SiD <f20241075@pilani.bits-pilani.ac.in>
+Date:   Sun Aug 31 21:04:11 2025 +0530
+
+    whitenoise
+
+[33mcommit 56933de4a28f1fd9364ea5bbb053723587401997[m
+Author: SiD <f20241075@pilani.bits-pilani.ac.in>
+Date:   Sun Aug 31 20:48:55 2025 +0530
+
+    whitenoise
+
+[33mcommit e1c32fa8299c56a8c0c305324ad7811ae20e24f7[m
+Author: SiD <f20241075@pilani.bits-pilani.ac.in>
+Date:   Sun Aug 31 18:38:15 2025 +0530
+
+    cors for testing
+
+[33mcommit 2c1638647051c18211b012276e0eef70ba58a982[m
+Author: SiD <f20241075@pilani.bits-pilani.ac.in>
+Date:   Sun Aug 31 13:52:30 2025 +0530
+
+    Added Gunicorn and updated settings for Render deployment
+
+[33mcommit b449bf87e0c04de0c8dc3fbb836b8e982ab2239b[m
+Author: SiD <f20241075@pilani.bits-pilani.ac.in>
+Date:   Sun Aug 31 13:39:55 2025 +0530
+
+    Add Procfile and runtime.txt
+
+[33mcommit e72e147d0c7727bf8e9d8275b3b9ae010bf3ee6e[m
+Author: SiD <f20241075@pilani.bits-pilani.ac.in>
+Date:   Sun Aug 10 17:33:31 2025 +0530
+
+    Init
