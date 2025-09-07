@@ -1,58 +1,23 @@
-from rest_framework import serializers
-from .models import (
-    University, Contact, PointOfContact,
-    FoundingMember, UniversityChapter, CustomFoundingMember
-)
-
-class ContactSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Contact
-        fields = "__all__"
-
-
-class UniversitySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = University
-        fields = "__all__"
-
-
-class PointOfContactSerializer(serializers.ModelSerializer):
-    contact = ContactSerializer()
-
-    class Meta:
-        model = PointOfContact
-        fields = ["contact"]
-
-
-class FoundingMemberSerializer(serializers.ModelSerializer):
-    contact = ContactSerializer()
-
-    class Meta:
-        model = FoundingMember
-        fields = ["contact", "role", "current_level_of_study", "discipline", "resume", "proof_of_association"]
-
-class CustomFoundingMemberSerializer(serializers.ModelSerializer):
-    contact = ContactSerializer(required=False, allow_null=True)  # optional
-
-    class Meta:
-        model = CustomFoundingMember
-        fields = [
-            "contact", "role", "current_level_of_study",
-            "discipline", "resume", "proof_of_association"
-        ]
-
-
 class UniversityChapterSerializer(serializers.ModelSerializer):
     university = UniversitySerializer()
     point_of_contact = PointOfContactSerializer()
     founding_members = FoundingMemberSerializer(many=True)
     custom_founding_members = CustomFoundingMemberSerializer(many=True, required=False)
+
     class Meta:
         model = UniversityChapter
         fields = [
             "university", "point_of_contact",
             "founding_members", "custom_founding_members"
         ]
+
+    def validate(self, attrs):
+        founding_members = attrs.get("founding_members", [])
+        if len(founding_members) != 4:
+            raise serializers.ValidationError(
+                {"founding_members": "Exactly 4 founding members are required."}
+            )
+        return attrs
 
     def create(self, validated_data):
         # Extract nested data
