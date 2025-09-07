@@ -26,6 +26,8 @@ def create_university_chapter_nested(request):
         university = chapter_data["university"]
         poc = chapter_data["point_of_contact"]["contact"]
         founding_members = chapter_data["founding_members"]
+        custom_founding_members = chapter_data["custom_founding_members"]
+
 
         body = f"""
         New University Chapter Application Submitted
@@ -51,6 +53,18 @@ def create_university_chapter_nested(request):
         """
 
         for i, member in enumerate(founding_members, start=1):
+            c = member["contact"]
+            body += f"""
+        Member {i}:
+            Name: {c['name']}
+            Email: {c['email']}
+            Phone: {c['phone_number']}
+            LinkedIn: {c.get('linkedin', 'N/A')}
+            Role: {member['role']}
+            Level of Study: {member['current_level_of_study']}
+            Discipline: {member['discipline']}
+        """
+        for j, member in enumerate(custom_founding_members, start=1):
             c = member["contact"]
             body += f"""
         Member {i}:
