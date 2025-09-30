@@ -52,8 +52,8 @@ class FoundingMember(models.Model):
     role = models.CharField(max_length=100, choices=ROLE_CHOICES)
     current_level_of_study = models.CharField(max_length=100, choices=LEVEL_CHOICES)
     discipline = models.CharField(max_length=100)
-    resume = models.FileField(upload_to="resumes/")
-    proof_of_association = models.FileField(upload_to="proofs/")
+    resume = models.FileField(upload_to="resumes/", blank=True, null=True)
+    proof_of_association = models.FileField(upload_to="proofs/", blank=True, null=True)
 
     def __str__(self):
         return f"{self.contact.name} - {self.get_role_display()}"
